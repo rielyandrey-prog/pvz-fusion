@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Router Passwort Ändern — Protect Your Network Effectively</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0E1414;
+    --panel:#141C1C;
+    --cream:#F6F4EC;
+    --paper:#FBFAF4;
+    --amber:#F2A93B;
+    --amber-deep:#D98A18;
+    --teal:#1F9E8E;
+    --teal-deep:#147A6D;
+    --ink:#11201E;
+    --slate:#46584F;
+    --line:#E2DECF;
+    --line-dk:rgba(246,244,236,.1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'DM Sans',sans-serif;color:var(--ink);
+    background:var(--paper);line-height:1.72;-webkit-font-smoothing:antialiased;
+  }
+  .container{max-width:1160px;margin:0 auto;padding:0 30px}
+
+  /* HEADER single line */
+  header{background:var(--bg);position:sticky;top:0;z-index:60;border-bottom:1px solid var(--line-dk)}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:24px;height:74px;flex-wrap:nowrap}
+  .brand{display:flex;align-items:center;gap:12px;white-space:nowrap}
+  .brand .mark{
+    width:40px;height:40px;border-radius:10px;flex:0 0 auto;
+    background:linear-gradient(140deg,var(--amber),var(--teal));
+    display:grid;place-items:center;box-shadow:0 6px 18px rgba(242,169,59,.3);
+  }
+  .brand .mark svg{width:21px;height:21px}
+  .brand b{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--cream);font-size:1.16rem;letter-spacing:-.02em}
+  .brand b i{font-style:normal;color:var(--amber)}
+  .nav-links{display:flex;align-items:center;gap:30px;white-space:nowrap}
+  .nav-links a{color:#B6C2BC;text-decoration:none;font-size:.92rem;font-weight:500;transition:color .2s}
+  .nav-links a:hover{color:var(--amber)}
+  .nav-cta{
+    background:var(--amber);color:var(--bg)!important;padding:9px 18px;border-radius:8px;
+    font-weight:600;font-size:.9rem;transition:transform .2s,box-shadow .2s;
+  }
+  .nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(242,169,59,.4)}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+  .burger span{width:24px;height:2px;background:#B6C2BC;border-radius:2px}
+
+  /* HERO */
+  .hero{background:var(--bg);color:var(--cream);padding:90px 0 100px;position:relative;overflow:hidden}
+  .hero::before{
+    content:"";position:absolute;inset:0;opacity:.5;
+    background:
+      radial-gradient(620px 360px at 85% 0%,rgba(31,158,142,.22),transparent 60%),
+      radial-gradient(560px 340px at 5% 100%,rgba(242,169,59,.16),transparent 60%);
+  }
+  .hero .container{position:relative;z-index:2}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:9px;font-family:'JetBrains Mono',monospace;
+    background:rgba(31,158,142,.12);border:1px solid rgba(31,158,142,.4);color:var(--teal);
+    padding:7px 14px;border-radius:7px;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:26px;
+  }
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--amber);box-shadow:0 0 10px var(--amber)}
+  .hero h1{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;
+    font-size:clamp(2.3rem,5.3vw,3.9rem);line-height:1.05;letter-spacing:-.03em;
+    color:var(--cream);max-width:900px;margin-bottom:22px;
+  }
+  .hero h1 em{font-style:normal;color:var(--amber)}
+  .hero p.lead{font-size:clamp(1.05rem,1.5vw,1.2rem);color:#C3CFC9;max-width:700px;margin-bottom:34px}
+  .hero p.lead a{color:var(--amber);text-decoration:none;font-weight:600;border-bottom:1px solid rgba(242,169,59,.4);transition:border-color .2s}
+  .hero p.lead a:hover{border-color:var(--amber)}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+  .btn-primary{
+    background:linear-gradient(135deg,var(--amber),var(--amber-deep));color:var(--bg);
+    padding:15px 30px;border-radius:9px;font-weight:600;text-decoration:none;font-size:1rem;
+    box-shadow:0 12px 28px rgba(242,169,59,.32);transition:transform .2s,box-shadow .2s;
+  }
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(242,169,59,.46)}
+  .btn-ghost{
+    background:rgba(246,244,236,.06);color:var(--cream);padding:15px 28px;border-radius:9px;
+    font-weight:600;text-decoration:none;font-size:1rem;border:1px solid rgba(246,244,236,.16);transition:.2s;
+  }
+  .btn-ghost:hover{background:rgba(246,244,236,.12);border-color:var(--teal)}
+  .hero-stats{display:flex;gap:44px;margin-top:54px;flex-wrap:wrap}
+  .stat b{display:block;font-family:'Space Grotesk',sans-serif;font-size:1.8rem;font-weight:700;color:var(--cream)}
+  .stat span{font-size:.84rem;color:#7F8E87;font-family:'JetBrains Mono',monospace}
+
+  /* BODY */
+  main{padding:84px 0}
+  .lede{font-size:1.18rem;color:var(--slate);max-width:790px;margin:0 auto 70px;text-align:center}
+  .section{margin-bottom:62px;max-width:850px;margin-left:auto;margin-right:auto}
+  .section-tag{
+    display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;
+    font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:13px;
+  }
+  .section-tag::before{content:"";width:22px;height:2px;background:var(--amber);display:inline-block}
+  .section h2{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;
+    font-size:clamp(1.5rem,3vw,2.05rem);color:var(--ink);letter-spacing:-.02em;line-height:1.2;margin-bottom:20px;
+  }
+  .section p{margin-bottom:18px;color:var(--slate);font-size:1.04rem}
+  .section p a.inline{
+    color:var(--teal-deep);font-weight:600;text-decoration:none;
+    border-bottom:2px solid rgba(31,158,142,.3);transition:.2s;
+  }
+  .section p a.inline:hover{border-color:var(--teal);color:var(--amber-deep)}
+
+  /* TABLE */
+  .table-card{
+    background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;
+    box-shadow:0 16px 36px rgba(17,32,30,.06);margin:30px 0;
+  }
+  table{width:100%;border-collapse:collapse;font-size:.96rem}
+  thead th{
+    background:var(--bg);color:var(--cream);text-align:left;padding:16px 20px;
+    font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.92rem;
+  }
+  tbody td{padding:15px 20px;border-top:1px solid var(--line);color:var(--slate)}
+  tbody tr:nth-child(even){background:var(--paper)}
+  tbody td:first-child{font-weight:600;color:var(--ink)}
+  tbody tr:hover{background:#FDF6E9}
+
+  /* STEPS */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:30px 0}
+  .step{
+    background:#fff;border:1px solid var(--line);border-radius:15px;padding:26px 22px;
+    transition:transform .25s,box-shadow .25s,border-color .25s;
+  }
+  .step:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(17,32,30,.1);border-color:var(--amber)}
+  .step .num{
+    font-family:'JetBrains Mono',monospace;font-weight:500;font-size:.95rem;
+    width:42px;height:42px;border-radius:10px;display:grid;place-items:center;
+    background:linear-gradient(135deg,var(--amber),var(--teal));color:var(--bg);margin-bottom:16px;
+  }
+  .step h3{font-family:'Space Grotesk',sans-serif;font-size:1.06rem;color:var(--ink);margin-bottom:8px;font-weight:600}
+  .step p{font-size:.94rem;color:var(--slate);margin:0}
+
+  /* BENEFITS */
+  .benefits{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:28px 0}
+  .benefit{
+    display:flex;align-items:flex-start;gap:13px;background:#fff;border:1px solid var(--line);
+    border-radius:12px;padding:17px 19px;transition:.2s;
+  }
+  .benefit:hover{border-color:var(--teal);transform:translateX(4px)}
+  .benefit .ic{
+    flex:0 0 auto;width:26px;height:26px;border-radius:7px;background:rgba(31,158,142,.14);
+    display:grid;place-items:center;color:var(--teal-deep);font-size:.85rem;
+  }
+  .benefit span{font-size:.97rem;color:var(--ink);font-weight:500}
+
+  /* CALLOUT (second link) */
+  .callout{
+    background:linear-gradient(135deg,var(--bg),var(--panel));color:var(--cream);
+    border-radius:20px;padding:46px 42px;margin:50px auto;max-width:850px;position:relative;overflow:hidden;
+    border:1px solid var(--line-dk);
+  }
+  .callout::before{
+    content:"";position:absolute;right:-50px;top:-50px;width:220px;height:220px;
+    background:radial-gradient(circle,rgba(242,169,59,.28),transparent 70%);
+  }
+  .callout h2{font-family:'Space Grotesk',sans-serif;font-size:1.55rem;margin-bottom:14px;color:var(--cream);position:relative}
+  .callout p{color:#C3CFC9;position:relative;margin-bottom:22px}
+  .callout p a{color:var(--amber);text-decoration:underline;font-weight:600}
+  .callout .clink{
+    display:inline-block;background:var(--amber);color:var(--bg);padding:13px 26px;border-radius:9px;
+    font-weight:600;text-decoration:none;position:relative;transition:.2s;
+  }
+  .callout .clink:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(242,169,59,.4)}
+
+  /* FOOTER */
+  footer{background:var(--bg);color:#93A09A;padding:60px 0 30px}
+  .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:40px;margin-bottom:44px}
+  .foot-brand p{font-size:.93rem;color:#7F8E87;max-width:320px;margin-top:16px}
+  .foot-col h4{font-family:'Space Grotesk',sans-serif;color:var(--cream);font-size:.95rem;margin-bottom:16px;font-weight:600}
+  .foot-col a{display:block;color:#93A09A;text-decoration:none;font-size:.92rem;margin-bottom:10px;transition:color .2s}
+  .foot-col a:hover{color:var(--amber)}
+  .socials{display:flex;gap:12px;margin-top:20px}
+  .socials a{
+    width:40px;height:40px;border-radius:10px;background:rgba(246,244,236,.06);display:grid;place-items:center;
+    color:#B6C2BC;transition:.2s;border:1px solid var(--line-dk);
+  }
+  .socials a:hover{background:var(--amber);color:var(--bg);transform:translateY(-3px)}
+  .socials svg{width:18px;height:18px}
+  .foot-bottom{
+    border-top:1px solid var(--line-dk);padding-top:24px;display:flex;justify-content:space-between;
+    align-items:center;gap:16px;flex-wrap:wrap;font-size:.85rem;color:#6B7872;font-family:'JetBrains Mono',monospace;
+  }
+
+  @media(max-width:880px){
+    .steps{grid-template-columns:1fr}
+    .benefits{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr;gap:32px}
+  }
+  @media(max-width:680px){
+    .nav-links{
+      display:none;position:absolute;top:74px;left:0;right:0;background:var(--bg);flex-direction:column;
+      align-items:flex-start;padding:18px 30px;gap:16px;border-bottom:1px solid var(--line-dk);
+    }
+    .nav-links.open{display:flex}
+    .burger{display:flex}
+    .foot-bottom{flex-direction:column;align-items:flex-start}
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="container">
+    <nav class="nav">
+      <div class="brand">
+        <div class="mark">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="9" width="18" height="9" rx="2" fill="#0E1414"/><circle cx="7" cy="13.5" r="1.3" fill="#F2A93B"/><circle cx="11" cy="13.5" r="1.3" fill="#1F9E8E"/><path d="M16 5v3M12 5v3M8 5v3" stroke="#0E1414" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <b>Net<i>Guard</i></b>
+      </div>
+      <div class="nav-links" id="navLinks">
+        <a href="#understand">Admin Password</a>
+        <a href="#steps">How To</a>
+        <a href="#settings">Security Settings</a>
+        <a href="#benefits">Benefits</a>
+        <a href="https://speedport-ips.de/" class="nav-cta">Router Password ändern</a>
+      </div>
+      <div class="burger" id="burger"><span></span><span></span><span></span></div>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO / INTRO -->
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow"><span class="dot"></span>Router Security Guide</div>
+    <h1>Router Passwort Ändern — <em>lock down</em> your admin panel</h1>
+    <p class="lead">Changing your router password is one of the simplest yet most important steps for network security. The German term refers to updating the administrator password that protects your router's management panel — not the Wi-Fi password. If you're still on the manufacturer default, it's time to <a href="https://speedport-ips.de/">Router Password ändern</a> and take full control of your settings.</p>
+    <div class="hero-cta">
+      <a href="#steps" class="btn-primary">Start the Guide</a>
+      <a href="#settings" class="btn-ghost">View Security Settings</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><b>Admin</b><span>Panel Protection</span></div>
+      <div class="stat"><b>WPA3</b><span>Encryption Ready</span></div>
+      <div class="stat"><b>Default</b><span>Password = Risk</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- BODY -->
+<main>
+  <div class="container">
+
+    <p class="lede">Unlike a Wi-Fi password that controls wireless access, the router password protects the management panel from unauthorized changes. Many users keep the factory default — and that's exactly what attackers count on.</p>
+
+    <div class="section" id="understand">
+      <span class="section-tag">01 — The Concept</span>
+      <h2>Understanding the Router Administrator Password</h2>
+      <p>Every router includes an administration panel where you configure internet settings, wireless networks, security options, and connected devices. Access to this dashboard is protected by a dedicated administrator password.</p>
+      <p>This password is different from the Wi-Fi password used to connect devices. The administrator password controls who can modify router settings and manage network operations. If an unauthorized person reaches the admin panel, they may alter security settings, monitor activity, or even block legitimate users from the internet.</p>
+    </div>
+
+    <div class="section">
+      <span class="section-tag">02 — The Risk</span>
+      <h2>Why You Should Change the Router Password</h2>
+      <p>Default router passwords are often publicly known because manufacturers reuse the same credentials across many devices. That makes routers with unchanged passwords easy targets for attackers.</p>
+      <p>Updating the administrator password significantly improves security and reduces the risk of unauthorized access, while giving you full control over who can manage network settings. It also prevents accidental changes by others who may have temporary access to the router.</p>
+    </div>
+
+    <div class="section" id="steps">
+      <span class="section-tag">03 — The Process</span>
+      <h2>How the Password Change Process Works</h2>
+      <p>Changing the router password usually means logging into the admin dashboard through a web browser. After entering your current credentials, head to the security section where the password settings live. Once the new password is saved, the router applies it immediately — and future access requires the new password.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="num">01</div>
+          <h3>Log In</h3>
+          <p>Open the router admin dashboard in a browser and enter your current administrator credentials.</p>
+        </div>
+        <div class="step">
+          <div class="num">02</div>
+          <h3>Set New Password</h3>
+          <p>Open the security section, create a strong unique password, and save the change.</p>
+        </div>
+        <div class="step">
+          <div class="num">03</div>
+          <h3>Store It Safely</h3>
+          <p>Keep the new password somewhere secure so you never lose access to the management panel.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="settings">
+      <span class="section-tag">04 — Reference</span>
+      <h2>Important Router Security Settings</h2>
+      <p>Changing the administrator password is only one part of router security. The settings below combine to create a stronger, more secure network environment.</p>
+      <div class="table-card">
+        <table>
+          <thead>
+            <tr><th>Security Setting</th><th>Purpose</th><th>Benefit</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Admin Password</td><td>Protect router dashboard</td><td>Prevent unauthorized access</td></tr>
+            <tr><td>Wi-Fi Password</td><td>Secure wireless network</td><td>Control device connections</td></tr>
+            <tr><td>WPA3 Encryption</td><td>Encrypt network traffic</td><td>Enhanced security</td></tr>
+            <tr><td>Firewall Protection</td><td>Filter network traffic</td><td>Reduce threats</td></tr>
+            <tr><td>Guest Network</td><td>Separate visitor access</td><td>Improve privacy</td></tr>
+            <tr><td>Firmware Updates</td><td>Update router software</td><td>Fix vulnerabilities</td></tr>
+            <tr><td>Device Monitoring</td><td>Review active devices</td><td>Better network control</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="section">
+      <span class="section-tag">05 — Best Practice</span>
+      <h2>Creating a Strong Router Password</h2>
+      <p>A strong password is essential for preventing unauthorized access. Weak ones are easily guessed — especially if they use common words, names, or predictable patterns. A secure administrator password should mix letters, numbers, and symbols, and longer passwords are harder to crack.</p>
+      <p>Avoid reusing the same password across multiple accounts or devices. Unique credentials reduce your risk if another account is ever compromised.</p>
+    </div>
+
+    <!-- CALLOUT with SECOND link -->
+    <div class="callout">
+      <h2>Securing your Wi-Fi too?</h2>
+      <p>The admin password protects your settings, but your wireless network needs its own strong key. Follow this <a href="https://wlanpasswortandern.pages.dev/">step-by-step guide to changing your WLAN password</a> to keep every device on your network protected end to end.</p>
+      <a href="https://wlanpasswortandern.pages.dev/" class="clink">Read the WLAN Guide</a>
+    </div>
+
+    <div class="section">
+      <span class="section-tag">06 — Troubleshooting</span>
+      <h2>Common Problems After Changing the Password</h2>
+      <p>Some users hit snags after updating their router password. The most common is simply forgetting the new password shortly after the change.</p>
+      <p>Another challenge: multiple household members need admin access but don't know the updated credentials. Clear communication and secure password storage prevent this. If access is lost completely, you may need to reset the router to factory settings and configure it again from scratch.</p>
+    </div>
+
+    <div class="section" id="benefits">
+      <span class="section-tag">07 — The Payoff</span>
+      <h2>Benefits of Updating Router Credentials</h2>
+      <p>Changing the router password offers more than protection against hackers — it improves overall network management and gives you greater confidence in your security.</p>
+      <div class="benefits">
+        <div class="benefit"><span class="ic">✓</span><span>Improved protection against unauthorized access</span></div>
+        <div class="benefit"><span class="ic">✓</span><span>Better control over network settings</span></div>
+        <div class="benefit"><span class="ic">✓</span><span>Reduced risk of security breaches</span></div>
+        <div class="benefit"><span class="ic">✓</span><span>Stronger privacy for connected devices</span></div>
+        <div class="benefit"><span class="ic">✓</span><span>Protection against default password attacks</span></div>
+        <div class="benefit"><span class="ic">✓</span><span>Enhanced control of admin privileges</span></div>
+        <div class="benefit"><span class="ic">✓</span><span>Increased confidence in network security</span></div>
+        <div class="benefit"><span class="ic">✓</span><span>Safer online activities for all users</span></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <span class="section-tag">08 — Go Further</span>
+      <h2>Additional Security Recommendations</h2>
+      <p>Pair the password change with other measures. Update router firmware regularly so security patches install promptly, and monitor connected devices to spot unknown users. Enabling advanced encryption standards and creating separate guest networks strengthens security further. Routine reviews of router settings keep your connection secure and stable over time.</p>
+    </div>
+
+    <div class="section">
+      <span class="section-tag">09 — Wrap Up</span>
+      <h2>Conclusion</h2>
+      <p>Router Passwort Ändern is a critical step in protecting your network from unauthorized access and security threats. By replacing the default administrator password with a strong, unique credential, you secure the router dashboard and keep full control over your settings.</p>
+      <p>Combined with modern encryption, firmware updates, and regular monitoring, a secure router password contributes to a safer, more reliable internet experience. Whether your network powers work, entertainment, or smart home devices, updating the router password is one of the most effective ways to improve overall security.</p>
+    </div>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="brand">
+          <div class="mark">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="9" width="18" height="9" rx="2" fill="#0E1414"/><circle cx="7" cy="13.5" r="1.3" fill="#F2A93B"/><circle cx="11" cy="13.5" r="1.3" fill="#1F9E8E"/><path d="M16 5v3M12 5v3M8 5v3" stroke="#0E1414" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </div>
+          <b style="color:var(--cream)">Net<i style="color:var(--amber)">Guard</i></b>
+        </div>
+        <p>Clear, practical guides for securing your router, Wi-Fi, and every device on your network — at home and in the office.</p>
+        <div class="socials">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.5 9.9v-7H8v-2.9h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.6v1.9h2.7l-.4 2.9h-2.3v7A10 10 0 0022 12z"/></svg></a>
+          <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2H21l-6.5 7.4L22 22h-6l-4.7-6.1L5.9 22H3l7-8L2 2h6.2l4.2 5.6L18.2 2zm-1 18h1.7L7 4H5.2l12 16z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.3 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.1.4.3 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.1-1 .3-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.3-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.1-.4-.3-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.1 1-.3 2.2-.4C8.4 2.2 8.8 2.2 12 2.2z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3v9zM6.5 8.3a1.7 1.7 0 110-3.5 1.7 1.7 0 010 3.5zM19 19h-3v-4.7c0-1.1 0-2.5-1.6-2.5s-1.8 1.2-1.8 2.4V19h-3v-9h2.9v1.2h.1a3.2 3.2 0 012.8-1.6c3 0 3.6 2 3.6 4.6V19z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.2-.4-4.7a2.5 2.5 0 00-1.8-1.8C19.3 5 12 5 12 5s-7.3 0-8.8.5A2.5 2.5 0 001.4 7.3C1 8.8 1 12 1 12s0 3.2.4 4.7a2.5 2.5 0 001.8 1.8C4.7 19 12 19 12 19s7.3 0 8.8-.5a2.5 2.5 0 001.8-1.8C23 15.2 23 12 23 12zm-13 3.5v-7l6 3.5-6 3.5z"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Guide</h4>
+        <a href="#understand">Admin vs Wi-Fi</a>
+        <a href="#steps">How To Change</a>
+        <a href="#settings">Security Settings</a>
+        <a href="#benefits">Benefits</a>
+      </div>
+      <div class="foot-col">
+        <h4>Resources</h4>
+        <a href="https://speedport-ips.de/">Router Password ändern</a>
+        <a href="https://wlanpasswortandern.pages.dev/">WLAN Password Guide</a>
+        <a href="#settings">WPA3 Encryption</a>
+        <a href="#steps">Firmware Updates</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 NetGuard. All rights reserved.</span>
+      <span>Stronger routers, safer networks.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+</script>
+
+</body>
+</html>
